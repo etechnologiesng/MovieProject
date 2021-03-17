@@ -16,14 +16,24 @@ namespace MovieProject.Controllers
     {
         [HttpGet("SearchByTitle")]
        
-        public async Task<string> SearchByTitle(string title)
+        public async Task<Movie> SearchByTitle(string title)
         {
-           
+            var movie = new Movie();
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync("http://www.omdbapi.com/?apikey=a906d0e6&t=" + title))
                 {
-                   return await response.Content.ReadAsStringAsync();
+
+                  var res = await response.Content.ReadAsStringAsync();
+                    try
+                    {
+                        movie = JsonConvert.DeserializeObject<Movie>(res);
+                    }catch( Exception ex)
+                    {
+                        var err = ex.Message;
+                       // return BadRequest();
+                    }
+                    return movie;
           
                 }
             }

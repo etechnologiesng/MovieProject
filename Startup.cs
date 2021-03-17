@@ -3,10 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using MovieProject.Models;
 using System.Collections.Generic;
 
 namespace MovieProject
@@ -46,8 +48,11 @@ namespace MovieProject
                     }}, new List<string>()}
                 });
             });
-                // In production, the React files will be served from this directory
-                services.AddSpaStaticFiles(configuration =>
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                   options.UseInMemoryDatabase("MovieProject"));
+            // In production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });

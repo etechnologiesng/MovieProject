@@ -11,8 +11,9 @@ namespace MovieProject.Models
         {
             Ratings = new List<Rating>();
         }
- 
-            public string Title { get; set; }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
             public string Year { get; set; }
             public string Rated { get; set; }
             public string Released { get; set; }
