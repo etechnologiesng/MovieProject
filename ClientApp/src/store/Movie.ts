@@ -91,7 +91,7 @@ export const reducer: Reducer<MoviesState> = (state: MoviesState | undefined, in
         //            isLoading: false
         //        };
         //    }
-            break;
+       //     break;
     }
 
     return state;
