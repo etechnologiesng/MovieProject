@@ -14,7 +14,7 @@ namespace MovieProject.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        [HttpGet("SearchByTitle")]
+        [HttpGet("/SearchByTitle")]
        
         public async Task<Movie> SearchByTitle(string title)
         {
